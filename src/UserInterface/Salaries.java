@@ -73,8 +73,8 @@ public class Salaries extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addGap(107, 107, 107)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -98,29 +98,28 @@ public class Salaries extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         double madi=0.0;
-        List<Employee> employees = DataAccess.readFile("books.txt");
+        List<Employee> employees = DataAccess.readFile("employees.txt");
         //System.out.println(employees);
+        DataAccess da = new DataAccess();
+        
           for(int i =0;i<employees.size();i++){
-              if(employees.get(i).getTitleOfEmployment().equals("IT")){
-                  SupportStaff emp = new SupportStaff(employees.get(i).getEmployeeId(),employees.get(i).getFirst_name(),employees.get(i).getLast_name(),
-                          employees.get(i).getDOB(),employees.get(i).getGender(),employees.get(i).getAddress(),
-                          employees.get(i).getTitleOfEmployment(),employees.get(i).getDateHired(),employees.get(i).getHoursWorked(),
-                          employees.get(i).getRateOfPay(),employees.get(i).getCarAllowance(),employees.get(i).getMonthlyPay(),
-                          employees.get(i).getTaxRate());
-                    String nm = emp.getFirst_name();
-                    String lm =emp.getLast_name();
-                    double dh =emp.getMonthlyPay();
+              
+              
+                    String nm = employees.get(i).getFirst_name();
+                    String lm =employees.get(i).getLast_name();
+                    String dh =employees.get(i).getTitleOfEmployment();
+                    double ma = employees.get(i).getMonthlyPay();
+                    double cr = employees.get(i).getCarAllowance();
+                    double tp = employees.get(i).getTaxRate();
                   
                     DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-                    model.addRow(new Object[]{nm,lm,dh});
-              }
-                    
+                    model.addRow(new Object[]{nm,lm,dh,ma,cr,tp});
                 }
         employees.stream().filter((currentEmployee) -> (currentEmployee instanceof SupportStaff)).forEachOrdered((Employee currentEmployee) -> {
-      //      SupportStaff emp = (SupportStaff)currentEmployee;
-        //    double dh = emp.getMonthlyPay();
-      //      
-           // System.out.println();
+            SupportStaff emp = (SupportStaff)currentEmployee;
+            double dh = emp.getMonthlyPay();
+            
+            System.out.println(dh);
             
             //double ft = emp.getmSalary();
             

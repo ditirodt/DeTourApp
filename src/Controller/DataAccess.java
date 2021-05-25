@@ -20,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.nio.file.Paths;
-import javax.swing.table.DefaultTableModel;
 import model.Employee;
 import model.Management;
 import model.SupportStaff;
@@ -33,8 +32,7 @@ public class DataAccess {
     Scanner sc;
     String line;
     String filepath;
-    List<String> employees = new ArrayList<String>();
-    
+   // List<String> employees = new ArrayList<String>();
 /**    
     //constructor opens a file to read from
     public DataAccess(String filename)
@@ -124,57 +122,20 @@ public class DataAccess {
         }
 
     //private static void Salaries()
-    public static Employee getArray(){
-           List<Employee> employees = DataAccess.readFile("books.txt");
-           Employee emp = null;
-        //System.out.println(employees);
-          for(int i =0;i<employees.size();i++){
-              
-              if(employees.get(i).getTitleOfEmployment().equals("IT")){
-                   emp = new SupportStaff(employees.get(i).getEmployeeId(),employees.get(i).getFirst_name(),employees.get(i).getLast_name(),
-                          employees.get(i).getDOB(),employees.get(i).getGender(),employees.get(i).getAddress(),
-                          employees.get(i).getTitleOfEmployment(),employees.get(i).getDateHired(),employees.get(i).getHoursWorked(),
-                          employees.get(i).getRateOfPay(),employees.get(i).getCarAllowance(),employees.get(i).getMonthlyPay(),
-                          employees.get(i).getTaxRate());
-                  
-                  
-                  
-              }else if(employees.get(i).getTitleOfEmployment().equals("Sales")){
-                    emp = new SupportStaff(employees.get(i).getEmployeeId(),employees.get(i).getFirst_name(),employees.get(i).getLast_name(),
-                          employees.get(i).getDOB(),employees.get(i).getGender(),employees.get(i).getAddress(),
-                          employees.get(i).getTitleOfEmployment(),employees.get(i).getDateHired(),employees.get(i).getHoursWorked(),
-                          employees.get(i).getRateOfPay(),employees.get(i).getCarAllowance(),employees.get(i).getMonthlyPay(),
-                          employees.get(i).getTaxRate());
-              }else if(employees.get(i).getTitleOfEmployment().equals("Drivers")){
-                   emp = new SupportStaff(employees.get(i).getEmployeeId(),employees.get(i).getFirst_name(),employees.get(i).getLast_name(),
-                          employees.get(i).getDOB(),employees.get(i).getGender(),employees.get(i).getAddress(),
-                          employees.get(i).getTitleOfEmployment(),employees.get(i).getDateHired(),employees.get(i).getHoursWorked(),
-                          employees.get(i).getRateOfPay(),employees.get(i).getCarAllowance(),employees.get(i).getMonthlyPay(),
-                          employees.get(i).getTaxRate());
-              }else if(employees.get(i).getTitleOfEmployment().equals("Tour Operator")){
-                   emp = new SupportStaff(employees.get(i).getEmployeeId(),employees.get(i).getFirst_name(),employees.get(i).getLast_name(),
-                          employees.get(i).getDOB(),employees.get(i).getGender(),employees.get(i).getAddress(),
-                          employees.get(i).getTitleOfEmployment(),employees.get(i).getDateHired(),employees.get(i).getHoursWorked(),
-                          employees.get(i).getRateOfPay(),employees.get(i).getCarAllowance(),employees.get(i).getMonthlyPay(),
-                          employees.get(i).getTaxRate());
-              }else if(employees.get(i).getTitleOfEmployment().equals("Accounting Officer")){
-                   emp = new SupportStaff(employees.get(i).getEmployeeId(),employees.get(i).getFirst_name(),employees.get(i).getLast_name(),
-                          employees.get(i).getDOB(),employees.get(i).getGender(),employees.get(i).getAddress(),
-                          employees.get(i).getTitleOfEmployment(),employees.get(i).getDateHired(),employees.get(i).getHoursWorked(),
-                          employees.get(i).getRateOfPay(),employees.get(i).getCarAllowance(),employees.get(i).getMonthlyPay(),
-                          employees.get(i).getTaxRate());
-                    
-                }else if(employees.get(i).getTitleOfEmployment().contains("Management")){
-                   emp = new Management(employees.get(i).getEmployeeId(),employees.get(i).getFirst_name(),employees.get(i).getLast_name(),
-                          employees.get(i).getDOB(),employees.get(i).getGender(),employees.get(i).getAddress(),
-                          employees.get(i).getTitleOfEmployment(),employees.get(i).getDateHired(),employees.get(i).getHoursWorked(),
-                          employees.get(i).getRateOfPay(),employees.get(i).getCarAllowance(),employees.get(i).getMonthlyPay(),
-                          employees.get(i).getTaxRate());
-                 }
-              System.out.println("not recognised");
-                }
-    
-          
-        return emp;
-          };
+    //public ArrayList return_method(ArrayList fruits)
+   public static List<Employee> getArray() {
+    List<Employee> employees = DataAccess.readFile("employees.txt");
+
+    for (int i = 0; i < employees.size(); i++) {
+        Employee employee = employees.get(i);
+        if (employee.getTitleOfEmployment().contains("Management")) {
+            employees.set(i, new Management(employee));
+        } else {
+            employees.set(i, new SupportStaff(employee));
+        }
+    } 
+    return employees;
 }
+    }
+    
+

@@ -14,7 +14,14 @@ public class SupportStaff extends Employee {
     public SupportStaff(String employeeId, String first_name, String last_name, String DOB, String gender, String address, String titleOfEmployment, String dateHired, double hoursWorked, double rateOfPay, double carAllowance, double monthlyPay, double taxRate) {
         super(employeeId, first_name, last_name, DOB, gender, address, titleOfEmployment, dateHired, hoursWorked, rateOfPay, carAllowance, monthlyPay, taxRate);
     }
-
+    
+    public SupportStaff(Employee employee) {
+    this(employee.getEmployeeId(), employee.getFirst_name(), employee.getLast_name(),
+         employee.getDOB(), employee.getGender(), employee.getAddress(),
+         employee.getTitleOfEmployment(), employee.getDateHired(), employee.getHoursWorked(),
+         employee.getRateOfPay(), employee.getCarAllowance(), employee.getMonthlyPay(),
+         employee.getTaxRate());
+}
 
 
     

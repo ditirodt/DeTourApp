@@ -120,21 +120,17 @@ public class Search extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //DataAccess da = new DataAccess();
-       // Employee e = new Employee();
-       //SupportStaff sf = new SupportStaff();
-        double madi;
-        List<Employee> employees = DataAccess.readFile("books.txt");
-         for(int i =0;i<employees.size();i++){
-                    String nm = employees.get(i).getFirst_name();
-                    String lm =employees.get(i).getLast_name();
-                    String dh =employees.get(i).getTitleOfEmployment();
+      for (Employee employee : DataAccess.getArray ()){
+          String nm =employee.getFirst_name();
+          String ln = employee.getLast_name();
+          String tt=employee.getTitleOfEmployment();
+          DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+          model.addRow(new Object[]{nm,ln,tt});
+          
+      }
+      
                   
-                    DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-                    model.addRow(new Object[]{nm,lm,dh});
-                }
-        //System.out.println(employees);
+        
        
 
     }//GEN-LAST:event_jButton1ActionPerformed
